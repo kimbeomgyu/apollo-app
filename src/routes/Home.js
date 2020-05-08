@@ -1,6 +1,8 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
+import Layout from "../components/Layout";
+import Movie from "./Movie";
 
 const GET_MOVIES = gql`
   {
@@ -13,21 +15,15 @@ const GET_MOVIES = gql`
 `;
 
 export default () => {
-  const { loading, error, data } = useQuery(GET_MOVIES);
-  if (loading) {
-    return "loading...";
-  }
+  const { loading, data } = useQuery(GET_MOVIES);
 
-  if (data && data.movies) {
-    return data.movies.map((m) => (
-      <div>
-        <h1>{m.id}</h1>
-        <img src={m.medium_cover_image} alt={m.title} />
-      </div>
-    ));
-  }
-
-  if (error) {
-    return "Error!!";
-  }
+  return (
+    <Layout>
+      {loading
+        ? "loading"
+        : data &&
+          data.movies &&
+          data.movies.map((m) => <Movie key={m.title} {...m} />)}
+    </Layout>
+  );
 };
