@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
+import Detail from "../components/Detail";
 
 const GET_MOVIE = gql`
   query getMovie($id: Int!) {
@@ -22,5 +23,5 @@ export default () => {
 
   return loading
     ? "loading..."
-    : data && data.movie && <div>{data.movie.title}</div>;
+    : data && data.movie && <Detail {...data.movie} />;
 };
