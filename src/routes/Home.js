@@ -6,7 +6,9 @@ import Movie from "../components/Movie";
 
 const contentCount = 24;
 
-const emptyList = new Array(contentCount).fill(1).map(() => <Movie />);
+const emptyList = new Array(contentCount)
+  .fill(1)
+  .map((_, i) => <Movie key={"empty-" + i} />);
 
 const GET_MOVIES = gql`
   {
