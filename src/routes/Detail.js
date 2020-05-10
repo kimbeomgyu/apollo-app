@@ -21,7 +21,5 @@ export default () => {
     variables: { id: Number(id) },
   });
 
-  return loading
-    ? "loading..."
-    : data && data.movie && <Detail {...data.movie} />;
+  return <Detail loading={loading} data={data} />;
 };

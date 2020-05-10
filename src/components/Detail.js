@@ -59,23 +59,30 @@ const Description = styled.p`
   line-height: 20px;
 `;
 
-export default function Detail({
-  title,
-  description_intro,
-  medium_cover_image,
-}) {
+export default function Detail({ loading, data }) {
   return (
     <>
       <Background />
-      <Card>
-        <CardLeft>
-          <CardImage src={medium_cover_image} alt={title} />
-        </CardLeft>
-        <CardRight>
-          <Title>{title}</Title>
-          <Description>{description_intro}</Description>
-        </CardRight>
-      </Card>
+      {loading ? (
+        "loading"
+      ) : (
+        <Card>
+          <CardLeft>
+            <CardImage
+              src={data && data.movie && data.movie.medium_cover_image}
+              alt={data && data.movie && data.movie.title}
+            />
+          </CardLeft>
+          <CardRight>
+            <>
+              <Title>{data && data.movie && data.movie.title}</Title>
+              <Description>
+                {data && data.movie && data.movie.description_intro}
+              </Description>
+            </>
+          </CardRight>
+        </Card>
+      )}
     </>
   );
 }
