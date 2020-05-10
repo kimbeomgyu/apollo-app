@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Background from "./Background";
+import Movie from "./Movie";
+import List from "./List";
 
 const Card = styled.div`
   width: 840px;
@@ -96,6 +98,10 @@ export default function Detail({ loading, data }) {
           </CardRight>
         </Card>
       )}
+      <List>
+        {!loading &&
+          data?.suggestions?.map((m) => <Movie key={m.title} {...m} />)}
+      </List>
     </>
   );
 }
