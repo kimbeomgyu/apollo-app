@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Background from "./Background";
 
 const Card = styled.div`
-  width: 1000px;
-  height: 500px;
+  width: 840px;
+  height: 420px;
   background: transparent;
   position: absolute;
   left: 0;
@@ -18,7 +18,7 @@ const Card = styled.div`
 
 const CardLeft = styled.div`
   width: 40%;
-  height: 500px;
+  height: 420px;
   float: left;
   overflow: hidden;
   background: transparent;
@@ -35,7 +35,7 @@ const CardRight = styled.div`
   width: 60%;
   float: left;
   background: #34314c;
-  height: 500px;
+  height: 420px;
   border-radius: 0 10px 10px 0;
 `;
 const Title = styled.h1`
@@ -44,6 +44,18 @@ const Title = styled.h1`
   font-weight: 400;
   text-align: left;
   font-size: 40px;
+  margin: 30px 0 0 0;
+  padding: 0 0 0 40px;
+  letter-spacing: 1px;
+`;
+
+const Subtitle = styled.h4`
+  color: white;
+  opacity: 0.9;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  text-align: left;
+  font-size: 20px;
   margin: 30px 0 0 0;
   padding: 0 0 0 40px;
   letter-spacing: 1px;
@@ -69,16 +81,17 @@ export default function Detail({ loading, data }) {
         <Card>
           <CardLeft>
             <CardImage
-              src={data && data.movie && data.movie.medium_cover_image}
-              alt={data && data.movie && data.movie.title}
+              src={data?.movie?.medium_cover_image}
+              alt={data?.movie?.title}
             />
           </CardLeft>
           <CardRight>
             <>
-              <Title>{data && data.movie && data.movie.title}</Title>
-              <Description>
-                {data && data.movie && data.movie.description_intro}
-              </Description>
+              <Title>{data?.movie?.title}</Title>
+              <Subtitle>
+                {data?.movie?.language} {data?.movie?.rating}
+              </Subtitle>
+              <Description>{data?.movie?.description_intro}</Description>
             </>
           </CardRight>
         </Card>

@@ -11,6 +11,8 @@ const GET_MOVIE = gql`
       title
       description_intro
       medium_cover_image
+      language
+      rating
     }
   }
 `;
