@@ -48,14 +48,14 @@ const MovieImage = styled.img`
 `;
 
 const LIKE_MOVIE = gql`
-  mutation likeMovie($id: Int!) {
-    likeMovie(id: $id) @client
+  mutation toggleLikeMovie($id: Int!, $isLiked: Boolean!) {
+    toggleLikeMovie(id: $id, isLiked: $isLiked) @client
   }
 `;
 
 export default ({ id, medium_cover_image, title, isLiked }) => {
-  const [likeMovie] = useMutation(LIKE_MOVIE, {
-    variables: { id: parseInt(id) },
+  const [toggleLikeMovie] = useMutation(LIKE_MOVIE, {
+    variables: { id: parseInt(id), isLiked },
   });
 
   return id ? (
@@ -68,9 +68,7 @@ export default ({ id, medium_cover_image, title, isLiked }) => {
           </Figure>
         </Grid>
       </Link>
-      <button onClick={isLiked ? null : likeMovie}>
-        {isLiked ? "unlike" : "like"}
-      </button>
+      <button onClick={toggleLikeMovie}>{isLiked ? "unlike" : "like"}</button>
     </>
   ) : (
     <Link to={`/`} style={{ cursor: "default" }} children={<Grid />} />
