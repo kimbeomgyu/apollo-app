@@ -15,7 +15,8 @@ function App() {
         );
         @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
         body {
-          background: #e2e2e2;
+          background: #34314c;
+          color: white;
           width: 101%;
           height: 100vh;
         }

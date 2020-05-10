@@ -16,7 +16,7 @@ const Figure = styled.figure`
   margin: 0;
   width: 100%;
   text-align: center;
-  background-color: #000;
+  background-color: #34314c;
 `;
 
 const MovieTitle = styled.figcaption`

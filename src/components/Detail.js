@@ -34,7 +34,7 @@ const CardImage = styled.img`
 const CardRight = styled.div`
   width: 60%;
   float: left;
-  background: #000000;
+  background: #34314c;
   height: 500px;
   border-radius: 0 10px 10px 0;
 `;
