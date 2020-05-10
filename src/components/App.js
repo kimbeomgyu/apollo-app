@@ -8,6 +8,18 @@ function App() {
     <Router>
       <Route exact path="/" component={Home} />
       <Route exact path="/:id" component={Detail} />
+      <style jsx>{`
+        @import url(
+          https://fonts.googleapis.com/css?family=Montserrat:400,
+          700
+        );
+        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+        body {
+          background: #e2e2e2;
+          width: 101%;
+          height: 100vh;
+        }
+      `}</style>
     </Router>
   );
 }

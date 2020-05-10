@@ -1,43 +1,62 @@
 import React from "react";
 import styled from "styled-components";
-import image from "../assets/slider.jpg";
+import Background from "./Background";
 
-const Background = styled.img`
-  width: 100%;
-  display: block;
+const Card = styled.div`
+  width: 1000px;
+  height: 500px;
+  background: transparent;
   position: absolute;
-  height: fit-content;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
 `;
 
-const Main = styled.div`
+const CardLeft = styled.div`
+  width: 40%;
+  height: 500px;
+  float: left;
+  overflow: hidden;
+  background: transparent;
+`;
+
+const CardImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 10px 0 0 10px;
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  width: 50%;
+`;
+
+const CardRight = styled.div`
+  width: 60%;
+  float: left;
+  background: #000000;
+  height: 500px;
+  border-radius: 0 10px 10px 0;
+`;
+const Title = styled.h1`
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  text-align: left;
+  font-size: 40px;
+  margin: 30px 0 0 0;
+  padding: 0 0 0 40px;
+  letter-spacing: 1px;
 `;
 
 const Description = styled.p`
-  opacity: 0.9;
-  text-align: left;
-  font-size: 14px;
-`;
-
-const Title = styled.h1`
-  font-size: 28px;
-  padding-bottom: 1em;
-`;
-
-const TextContainer = styled.div`
-  flex-direction: column;
-  padding: 1em;
-  color: #fff;
-  background-color: #00000005;
-`;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  padding: 0 40px 0 40px;
+  letter-spacing: 1px;
+  margin: 10px 0 10px 0;
+  line-height: 20px;
 `;
 
 export default function Detail({
@@ -46,15 +65,17 @@ export default function Detail({
   medium_cover_image,
 }) {
   return (
-    <Container>
-      <Background src={image} alt="background" />
-      <Main>
-        <TextContainer>
+    <>
+      <Background />
+      <Card>
+        <CardLeft>
+          <CardImage src={medium_cover_image} alt={title} />
+        </CardLeft>
+        <CardRight>
           <Title>{title}</Title>
           <Description>{description_intro}</Description>
-        </TextContainer>
-        <img src={medium_cover_image} alt={title} />
-      </Main>
-    </Container>
+        </CardRight>
+      </Card>
+    </>
   );
 }
