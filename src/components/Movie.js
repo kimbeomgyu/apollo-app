@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
 
 const Grid = styled.div`
   position: relative;
@@ -45,16 +47,32 @@ const MovieImage = styled.img`
   }
 `;
 
-export default ({ id, medium_cover_image, title }) =>
-  id ? (
-    <Link to={`/${id}`}>
-      <Grid>
-        <Figure>
-          <MovieImage src={medium_cover_image} alt={title} />
-          <MovieTitle>{title}</MovieTitle>
-        </Figure>
-      </Grid>
-    </Link>
+const LIKE_MOVIE = gql`
+  mutation likeMovie($id: Int!) {
+    likeMovie(id: $id) @client
+  }
+`;
+
+export default ({ id, medium_cover_image, title, isLiked }) => {
+  const [likeMovie] = useMutation(LIKE_MOVIE, {
+    variables: { id: parseInt(id) },
+  });
+
+  return id ? (
+    <>
+      <Link to={`/${id}`}>
+        <Grid>
+          <Figure>
+            <MovieImage src={medium_cover_image} alt={title} width={"150px"} />
+            <MovieTitle>{title}</MovieTitle>
+          </Figure>
+        </Grid>
+      </Link>
+      <button onClick={isLiked ? null : likeMovie}>
+        {isLiked ? "unlike" : "like"}
+      </button>
+    </>
   ) : (
-    <Link style={{ cursor: "default" }} children={<Grid />} />
+    <Link to={`/`} style={{ cursor: "default" }} children={<Grid />} />
   );
+};

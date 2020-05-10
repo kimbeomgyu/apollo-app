@@ -16,6 +16,7 @@ const GET_MOVIES = gql`
       id
       title
       medium_cover_image
+      isLiked @client
     }
   }
 `;
@@ -27,9 +28,7 @@ export default () => {
     <Home>
       {loading
         ? "loading"
-        : data &&
-          data.movies &&
-          data.movies.map((m) => <Movie key={m.title} {...m} />)}
+        : data?.movies?.map((m) => <Movie key={m.title} {...m} />)}
       {emptyList}
     </Home>
   );

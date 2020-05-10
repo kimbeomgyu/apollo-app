@@ -18,6 +18,7 @@ const GET_MOVIE = gql`
       id
       title
       medium_cover_image
+      isLiked @client
     }
   }
 `;
